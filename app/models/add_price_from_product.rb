@@ -1,0 +1,2 @@
+class AddPriceFromProduct < ApplicationRecord
+end
