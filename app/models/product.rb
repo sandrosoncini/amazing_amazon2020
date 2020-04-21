@@ -1,5 +1,9 @@
 class Product < ApplicationRecord
-    validates(:title, presence: true, uniqueness: true)
+    before_validation(:set_default_price)
+    before_save(:capitalize_title)
+    
+    
+    validates(:title, presence: true, uniqueness: {case_sensitive: false})
     validates(
         :description,
         presence: { message: "must exist" },
@@ -9,4 +13,19 @@ class Product < ApplicationRecord
         :price,
         numericality: { greater_than_or_equal_to: 0, allow_blank: true }
     )
+
+
+    private 
+
+    def set_default_price
+        self.price ||= 1
+    end
+
+    def capitalize_title
+        self.title = self.title.capitalize
+    end
+
+    
+
+
 end
