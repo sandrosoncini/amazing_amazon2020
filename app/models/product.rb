@@ -20,12 +20,15 @@ class Product < ApplicationRecord
     )
 
     scope(:search, -> (query){ where("title ILIKE ? OR description ILIKE ?", "%#{query}%", "%#{query}%") })
-
+    
+    def increment_hit 
+        hit_count  += 1
+    end
 
     private 
 
 
-    def set_default_price
+    def set_default_price 
         self.price ||= 1
     end
 

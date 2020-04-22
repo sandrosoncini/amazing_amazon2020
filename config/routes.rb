@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   get("/", to: "welcome#root")
   get("/about", to: "welcome#about")
   get("/contact_us", to: "welcome#contact_us")
-
   post("/process_contact", to: "welcome#process_contact")
   
+
+
+  get("/products", to: "products#index")
+  get("/products/new", to: "products#new")
 end
