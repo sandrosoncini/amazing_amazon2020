@@ -11,7 +11,7 @@ Product.delete_all
 User.delete_all
 
 
-1000.times do 
+100.times do 
     created_at = Faker::Date.backward(days: 365 * 5)
     Product.create(
         title: Faker::Device.model_name,
@@ -26,7 +26,7 @@ end
     created_at = Faker::Date.backward(days: 365 * 5)
     User.create(
         first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name  ,
+        last_name: Faker::Name.last_name,
         email: Faker::Internet.email  
     )
 end
