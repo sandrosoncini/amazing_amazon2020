@@ -14,6 +14,8 @@ class Product < ApplicationRecord
         numericality: { greater_than_or_equal_to: 0, allow_blank: true }
     )
 
+    scope(:search, -> (query){ where("title ILIKE ? OR description ILIKE ?", "%#{query}%", "%#{query}%") })
+
 
     private 
 
@@ -24,8 +26,5 @@ class Product < ApplicationRecord
     def capitalize_title
         self.title = self.title.capitalize
     end
-
-    
-
 
 end

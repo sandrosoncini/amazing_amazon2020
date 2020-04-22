@@ -8,18 +8,31 @@
 
 
 Product.delete_all
-NUM_PRODUCT = 1000
+User.delete_all
 
-NUM_PRODUCT.times do 
+
+1000.times do 
     created_at = Faker::Date.backward(days: 365 * 5)
     Product.create(
         title: Faker::Device.model_name,
-        description: Faker::Device.manufacturer,
+        description: Faker::ChuckNorris.fact,
         price: Faker::Number.decimal(l_digits: 2)
         
     )
 end
 
-product = Product.all 
+
+100.times do 
+    created_at = Faker::Date.backward(days: 365 * 5)
+    User.create(
+        first_name: Faker::Name.first_name,
+        last_name: Faker::Name.last_name  ,
+        email: Faker::Internet.email  
+    )
+end
+
+product = Product.all
+user = User.all 
 
 puts Cowsay.say("Generated #{product.count} products", :dragon)
+puts Cowsay.say("Generated #{user.count} users", :frogs)
