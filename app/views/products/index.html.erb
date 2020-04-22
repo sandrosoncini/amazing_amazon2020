@@ -3,10 +3,14 @@
 
 <% @products.each do |product| %>
   <div>
-    <h2> <%= product.title %></h2>
-    <p> <%= product.description %></p>
-    <p>Price: <%= product.price %></p>
-    <hr>
+  <ul class="list-group">
+      <a href="/products/<%= product.id %>">
+      <h4> <%= product.id %> | <%= product.title %></h4>
+      </a>
+      <hr>
+  </ul>
   </div>
+
+  
 <% end %>
 </div>

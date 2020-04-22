@@ -10,11 +10,9 @@
   </head>
 
   <body>
-  <nav> 
-     <a href="/">Home<a>
-     <a href="/about">About <a>
-     <a href="/contact_us">Contact Us<a>
-  </nav>
+  <%= render 'shared/navbar' %>
+  <div class="container">
+   
     <%= yield %>
-  </body>
+  </div>
 </html>
