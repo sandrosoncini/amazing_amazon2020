@@ -27,4 +27,39 @@
         %>
        
     </div> 
+   
 </div>
+
+<div>
+ <%= simple_form_for [@product, @review] do |f| %>
+  
+  <%= f.input :rating, label: "Rating" %>
+  <%= f.input :body, label: "Review Body" %>
+  <%= f.submit "Review", class: "btn btn-outline-primary btn-lg-sm btn-block"%>
+<% end %>
+<br>
+<ul class="list-group answer-list">
+  <% @reviews.each do |review| %>
+    <li class="list-group-item">
+      <p>
+        <%= review.body %> | <small class="text-warning" >Rating -   <%= review.rating%></small><br />
+        <small>
+          <%= link_to(
+            "Delete",
+            product_review_path(@product, review),
+            method: :delete, 
+            data: {
+              confirm: "Are you sure?"
+            },
+            class: 'btn btn-danger btn-sm',
+          ) %>
+        </small>
+        |
+        <small>
+        reviewed <%= time_ago_in_words(review.created_at) %>
+        </small>
+      </p>
+    </li>
+  <% end %>
+</ul>
+

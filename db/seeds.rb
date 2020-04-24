@@ -9,16 +9,24 @@
 
 Product.delete_all
 User.delete_all
-
+Review.delete_all
 
 100.times do 
     created_at = Faker::Date.backward(days: 365 * 5)
-    Product.create(
-        title: Faker::Device.model_name,
-        description: Faker::ChuckNorris.fact,
-        price: Faker::Number.decimal(l_digits: 2)
-        
+    p = Product.create(
+            title: Faker::Device.model_name,
+            description: Faker::ChuckNorris.fact,
+            price: Faker::Number.decimal(l_digits: 2)     
     )
+    if p.valid? 
+        p.reviews = rand(0..15).times.map do 
+            Review.new(
+                body: Faker::GreekPhilosophers.quote,
+                rating: rand(1..5) 
+            
+            )
+        end
+    end
 end
 
 
@@ -32,7 +40,9 @@ end
 end
 
 product = Product.all
-user = User.all 
+user = User.all
+review = Review.all
 
 puts Cowsay.say("Generated #{product.count} products", :dragon)
 puts Cowsay.say("Generated #{user.count} users", :frogs)
+puts Cowsay.say("Generated #{review.count} reviews", :tux)
