@@ -1,22 +1,19 @@
-
+<br>
 <div class='container shadow-sm p-3 mb-5 bg-white rounded overflow-wrap'>
     <h1>
-        <span class='badge badge-pill badge-info'>
+        <span class='badge badge-info'>
          <%= @product.title %>
-        </span>
-       
+        </span>   
     </h1>
     <p class='shadow-none p-3 mb-5 bg-light rounded'><%= @product.description%></p>
     <h3 >$ <%= @product.price%></h3>
-    <div>
-
+    <div> 
         <%= link_to(
         "Edit",
         edit_product_path(@product),
         class: 'btn btn-info'
         )
         %>
-
         <%= link_to(
         "Delete",
         product_path(@product),
@@ -25,41 +22,38 @@
         data: { confirm: 'are you sure?' }
         )
         %>
-       
-    </div> 
-   
-</div>
-
-<div>
- <%= simple_form_for [@product, @review] do |f| %>
-  
-  <%= f.input :rating, label: "Rating" %>
-  <%= f.input :body, label: "Review Body" %>
-  <%= f.submit "Review", class: "btn btn-outline-primary btn-lg-sm btn-block"%>
-<% end %>
+    </div>
 <br>
-<ul class="list-group answer-list">
-  <% @reviews.each do |review| %>
-    <li class="list-group-item">
-      <p>
-        <%= review.body %> | <small class="text-warning" >Rating -   <%= review.rating%></small><br />
-        <small>
-          <%= link_to(
-            "Delete",
-            product_review_path(@product, review),
-            method: :delete, 
-            data: {
-              confirm: "Are you sure?"
-            },
-            class: 'btn btn-danger btn-sm',
-          ) %>
-        </small>
-        |
-        <small>
-        reviewed <%= time_ago_in_words(review.created_at) %>
-        </small>
-      </p>
-    </li>
-  <% end %>
-</ul>
+    <div class="shadow-none p-3 mb-5 bg-light rounded">
+        <%= simple_form_for [@product, @review] do |f| %>
+        <%= f.input :rating, label: "Rating" %>
+        <%= f.input :body, label: "Review Body" %>
+        <%= f.submit "Review", class: "btn btn-outline-info btn-lg-sm btn-block"%>
+        <% end %>
+    </div>
+<br>
+    <ul class="list-group answer-list ">
+    <% @reviews.each do |review| %>
+        <li class="list-group-item">
+        <p>
+            <%= review.body %> | <small class="text-warning" >Rating -  <%= review.rating%></small><br>
+            <small>
+            reviewed <%= time_ago_in_words(review.created_at) %>
+            </small>
+            <small class="d-flex flex-row-reverse">
+            <%= link_to(
+                "Delete",
+                product_review_path(@product, review),
+                method: :delete, 
+                data: {
+                confirm: "Are you sure?"
+                },
+                class: 'btn btn-danger btn-sm',
+            ) %>
+            </small> 
+        </p>
+        </li>
+    <% end %>
+    </ul>
 
+</div> 

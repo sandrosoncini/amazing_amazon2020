@@ -1,11 +1,12 @@
-
+<br>
 <div class="container shadow-sm p-3 mb-5 bg-white rounded overflow-auto" >
 <h1>Products</h1>
+<br>
 <% @products.each do |product| %>
   <div>
   <ul class="list-group">
-      <a href="/products/<%= product.id %>">
-      <h4> <%= product.title %></h4>
+      <a  href="/products/<%= product.id %>">
+      <h4  class="d-flex align-content-stretch "> <%= product.title %></h4>
       </a>
       <hr>
   </ul>
